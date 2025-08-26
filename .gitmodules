@@ -1,0 +1,3 @@
+[submodule "src/GeoGate"]
+	path = src/GeoGate
+	url = https://github.com/geogate-io/GeoGate

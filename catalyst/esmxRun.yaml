@@ -1,0 +1,48 @@
+ESMX:
+  App: 
+    globalResourceControl: true
+    logKindFlag: ESMF_LOGKIND_Multi
+    logAppendFlag: false
+    logFlush: true
+    startTime: 2024-08-11T12:00:00
+    stopTime: 2024-08-12T12:00:00
+  Driver:
+    componentList: [ATM, COP]
+    attributes:
+      Verbosity: low
+    runSequence: |
+      @3600
+        ATM
+        ATM -> COP :remapMethod=redist
+        COP geogate_phases_catalyst
+      @
+ATM:
+  model: ESMX_Data
+  petList: 0-1
+  geom:
+    nx: 360
+    ny: 180
+    coordSys: ESMF_COORDSYS_SPH_DEG 
+    minx: 0.0
+    maxx: 360.0
+    miny: -90.0
+    maxy: 90.0
+  exportFields:
+    sea_surface_temperature: {dim: 2, scheme: "sincos", member: 10, step: 273, val: 273}
+  attributes: 
+    Verbosity: low 
+    Diagnostic: 0
+COP:
+  model: geogate
+  petList: 2-3
+  attributes: 
+    Verbosity: low 
+    Diagnostic: 0
+    CatalystConvertToCart: .true.
+    CatalystScripts: catalyst_grid_writer.py:catalyst_plot.py
+    #CatalystLoadPath: /glade/work/turuncu/COP/progs/spack-stack-1.9.0/envs/cop_egl/install/oneapi/2024.2.1/paraview-5.13.1-hw4f27f/lib64/catalyst
+    #CatalystLoadPath: /work2/noaa/nems/tufuk/COP/spack-stack-1.9.1/envs/pv_osmesa_gnu/install/gcc/13.3.0/paraview-5.13.1-roqhgvd/lib64/catalyst
+    #CatalystLoadPath: /work2/noaa/nems/tufuk/PROGS/spack-stack-1.9.2/envs/pv_intel/install/oneapi/2024.2.1/paraview-5.13.1-zj6bwk4/lib64/catalyst
+    #DebugMode: True 
+    #PythonScripts: process_out.py
+    #PythonScripts: process_ocn.py
