@@ -1,0 +1,38 @@
+ESMX:
+  App: 
+    globalResourceControl: true
+    logKindFlag: ESMF_LOGKIND_Multi
+    logAppendFlag: false
+    logFlush: true
+    fieldDictionary: fd.yaml
+    startTime: 2024-08-11T12:00:00
+    stopTime: 2024-08-12T12:00:00
+  Driver:
+    componentList: [ATM, COP]
+    attributes:
+      Verbosity: low
+    runSequence: |
+      @21600
+        ATM geogate_phases_python
+        ATM -> COP :remapMethod=redist
+        COP geogate_phases_catalyst
+      @
+ATM:
+  model: geogate
+  petList: 0
+  attributes: 
+    Verbosity: low 
+    Diagnostic: 0
+    DebugMode: .false.
+    PythonScripts: data_fake.py
+    ExportMeshFile: ../data/mesh_atm.nc
+    ExportFields: [eastward_wind_at_10m_height, northward_wind_at_10m_height, air_pressure_at_sea_level]
+COP:
+  model: geogate
+  petList: 1
+  attributes:
+    Verbosity: low
+    Diagnostic: 0
+    DebugMode: .false.
+    CatalystConvertToCart: .true.
+    CatalystScripts: catalyst_grid_writer.py

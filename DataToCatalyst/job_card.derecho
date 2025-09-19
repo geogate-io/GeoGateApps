@@ -1,0 +1,31 @@
+#!/bin/bash -l
+#PBS -o out
+#PBS -e err
+#PBS -N 2d
+#PBS -A P93300606
+##PBS -q main
+#PBS -q develop
+#PBS -l select=1:ncpus=8:mpiprocs=4:ompthreads=1
+#PBS -l walltime=00:05:00
+
+set -eux
+source ../envs/env_derecho_intel.sh
+set +x
+
+export MPI_TYPE_DEPTH=20
+export OMP_STACKSIZE=512M
+export OMP_NUM_THREADS=1
+export ESMF_RUNTIME_COMPLIANCECHECK=OFF:depth=4
+export ESMF_RUNTIME_PROFILE=ON
+export ESMF_RUNTIME_PROFILE_OUTPUT="SUMMARY"
+export MPICH_COLL_OPT_OFF=1
+export CATALYST_IMPLEMENTATION_NAME="paraview"
+export CATALYST_IMPLEMENTATION_PATHS="$paraview_ROOT/lib64/catalyst"
+export PARAVIEW_LOG_CATALYST_VERBOSITY="INFO"
+export CATALYST_DEBUG=1
+
+# Avoid job errors because of filesystem synchronization delays
+sync && sleep 1
+ulimit -s unlimited
+
+mpiexec -n 4 --hostfile $PBS_NODEFILE install/bin/esmx_app
