@@ -1,0 +1,221 @@
+packages:
+  all:
+    providers:
+      mpi:: [cray-mpich@8.1.29]
+      python: [python@3.12.11]
+  mpi:
+    buildable: False
+  gcc:
+    buildable: False
+    externals:
+    - spec: gcc@12.2.0 languages:='c,c++,fortran'
+      prefix: /opt/cray/pe/gcc/12.2.0
+      extra_attributes:
+        compilers:
+          c: /opt/cray/pe/gcc/12.2.0/bin/gcc
+          cxx: /opt/cray/pe/gcc/12.2.0/bin/g++
+          fortran: /opt/cray/pe/gcc/12.2.0/bin/gfortran
+      modules:
+      - ncarenv/23.09
+      - gcc/12.2.0
+      environment:
+        prepend_path:
+          LD_LIBRARY_PATH: '/glade/u/apps/common/23.08/spack/opt/spack/intel-oneapi-compilers/2024.2.1/compiler/2024.2/lib'
+        set:
+          FI_CXI_RX_MATCH_MODE: 'hybrid'
+      extra_rpaths: []
+  cray-mpich:
+    externals:
+    - spec: cray-mpich@8.1.27 +wrappers %gcc@12.2.0
+      prefix: /opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1
+      extra_attributes:
+        compilers:
+          c: /opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin/mpicc
+          cxx: /opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin/mpicxx
+          fortran: /opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin/mpifort
+      modules:
+      - ncarenv/23.09
+      - craype/2.7.20
+      - cray-mpich/8.1.27
+      - libfabric/1.15.2.0
+      - cray-pals/1.2.11
+# Python related packages
+  python:
+    buildable: False
+    externals:
+    - spec: python@3.12.11
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+      environment:
+        set:
+          SPACK_PYTHON: /glade/work/turuncu/ML/envs/earth2studio/bin/python3.12
+  py-cython:
+    externals:
+    - spec: py-cython@3.1.4
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+  py-numpy:
+    externals:
+    - spec: py-numpy@2.3.2
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+  py-pandas:
+    externals:
+    - spec: py-pandas@2.3.3
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+  py-matplotlib:
+    externals:
+    - spec: py-matplotlib@3.10.5
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+  py-setuptools:
+    externals:
+    - spec: py-setuptools@80.9.0
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+  py-pip:
+    externals:
+    - spec: py-pip@25.2
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+  py-pyyaml:
+    externals:
+    - spec: py-pyyaml@6.0.2
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+  py-wheel:
+    externals:
+    - spec: py-wheel@0.45.1
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+  py-mako:
+    externals:
+    - spec: py-mako@1.3.10
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+  py-packaging:
+    externals:
+    - spec: py-packaging@25.0
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+  py-flit-core:
+    externals:
+    - spec: py-flit-core@3.12.0
+      prefix: /glade/work/turuncu/ML/envs/earth2studio
+# All other external packages listed alphabetically
+  autoconf:
+    externals:
+    - spec: autoconf@2.69
+      prefix: /usr
+  automake:
+    externals:
+    - spec: automake@1.15.1
+      prefix: /usr
+  binutils:
+    externals:
+    - spec: binutils@2.37.20211103
+      prefix: /usr
+  coreutils:
+    externals:
+    - spec: coreutils@8.32
+      prefix: /usr
+  cvs:
+    externals:
+    - spec: cvs@1.12.13
+      prefix: /usr
+  diffutils:
+    externals:
+    - spec: diffutils@3.6
+      prefix: /usr
+  findutils:
+    externals:
+    - spec: findutils@4.8.0
+      prefix: /usr
+  gawk:
+    externals:
+    - spec: gawk@4.2.1
+      prefix: /usr
+  git:
+    externals:
+    - spec: git@2.47.0
+      prefix: /glade/u/apps/casper/24.12/spack/opt/spack/git/2.47.0/gcc/12.4.0/cn62
+  git-lfs:
+    externals:
+    - spec: git-lfs@3.5.1
+      prefix: /glade/u/apps/casper/24.12/spack/opt/spack/git-lfs/3.5.1/gcc/12.4.0/aivb
+  gmake:
+    externals:
+    - spec: gmake@4.2.1
+      prefix: /usr
+  grep:
+    externals:
+    - spec: grep@3.1
+      prefix: /usr
+  groff:
+    externals:
+    - spec: groff@1.22.4
+      prefix: /usr
+  krb5:
+    externals:
+    - spec: krb5@1.19.2
+      prefix: /usr/lib/mit
+  m4:
+    externals:
+    - spec: m4@1.4.18
+      prefix: /usr
+  mysql:
+    buildable: False
+    externals:
+    - spec: mysql@8.0.33
+      prefix: /glade/work/epicufsrt/contrib/spack-stack/derecho/mysql-8.0.33
+  openssh:
+    externals:
+    - spec: openssh@8.4p1
+      prefix: /usr
+  openssl:
+    buildable: False
+    externals:
+    - spec: openssl@1.1.1l%gcc
+      prefix: /usr
+  pkg-config:
+    externals:
+    - spec: pkg-config@0.29.2
+      prefix: /usr
+  qt:
+    buildable: False
+    externals:
+    - spec: qt@5.14.2
+      prefix: /glade/u/apps/derecho/23.09/spack/opt/spack/qt/5.14.2/gcc/7.5.0/eqcj
+  sed:
+    externals:
+    - spec: sed@4.4
+      prefix: /usr
+  subversion:
+    externals:
+    - spec: subversion@1.14.1
+      prefix: /usr
+  tar:
+    externals:
+    - spec: tar@1.34
+      prefix: /usr
+  texinfo:
+    externals:
+    - spec: texinfo@6.5
+      prefix: /usr
+  wget:
+    externals:
+    - spec: wget@1.20.3
+      prefix: /usr
+# Requirements
+  mesa:
+    require:
+    - '^python@3.12.11'
+  esmf:
+    require:
+    - '~xerces ~pnetcdf +shared +external-parallelio'
+    - 'esmf_os=Linux esmf_comm=mpich'
+    - any_of: ['+python']
+      when: "%gcc"
+  hdf5:
+    require: 
+    - '@1.14.6 +hl +fortran +mpi +threadsafe ~szip'
+  hwloc:
+    require: 
+    - '@2.12.2 ~libxml2'
+  netcdf-fortran:
+    require:
+    - '^netcdf-c'
+    - '@4.6.1'
+  netcdf-c:
+    require:
+    - '@4.9.2 +mpi ~parallel-netcdf ~shared ~szip build_system=autotools'

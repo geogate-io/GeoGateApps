@@ -1,0 +1,36 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+  # add package specs to the `specs` list
+  specs:
+  - paraview@5.13.3+libcatalyst+fortran~ipo+mpi+python~cdi+opengl2 %gcc@12.2.0
+    ^[virtuals=gl] osmesa
+    ^libcatalyst@2.0.0+fortran~ipo+python+conduit %gcc@12.2.0
+    ^conduit@0.9.2+fortran~ipo+python+mpi~parmetis %gcc@12.2.0
+    ^llvm@20.1.8~gold %gcc@12.2.0
+    ^python@3.12.11
+  - esmf@8.9.0 %gcc@12.2.0
+
+  concretizer:
+    unify: true
+
+  config:
+    install_tree:
+      root: $env/install
+
+  modules:
+    default:
+      roots:
+        lmod: $env/install/modulefiles
+        tcl: $env/install/modulefiles
+  view: false
+
+  include:
+  - path: packages.yaml
+  - path: modules.yaml
+
+  repos:
+    builtin:
+      commit: 2ebf5115bf14e306903196861503fc630610b750
