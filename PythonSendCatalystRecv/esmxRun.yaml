@@ -5,8 +5,8 @@ ESMX:
     logAppendFlag: false
     logFlush: true
     fieldDictionary: fd.yaml
-    startTime: 2024-08-11T12:00:00
-    stopTime: 2024-08-12T12:00:00
+    startTime: 2022-08-11T00:00:00
+    stopTime: 2022-08-12T00:00:00
   Driver:
     componentList: [ATM, COP]
     attributes:
@@ -24,8 +24,8 @@ ATM:
     Verbosity: low 
     Diagnostic: 0
     DebugMode: .false.
-    PythonScripts: data_fake.py
-    ExportMeshFile: ../data/mesh_atm.nc
+    PythonScripts: data_graphcast_small.py
+    ExportMeshFile: ../meshes/graphcast_small_mesh_cdf5.nc
     ExportFields: [eastward_wind_at_10m_height, northward_wind_at_10m_height, air_pressure_at_sea_level]
 COP:
   model: geogate

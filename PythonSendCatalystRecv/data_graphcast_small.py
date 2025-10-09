@@ -15,10 +15,10 @@ ny_atm = 181
 debug = True 
 
 # Access to channel
-#my_channel = my_node["channels/{}/{}".format(state, channel)]
+my_channel = my_node["channels/{}/{}".format(state, channel)]
 
 # Model specific parameters
-forecast = "2022-08-11T00:00:00" #my_node['state/time_str']
+forecast = my_node['state/time_str']
 step = 1 # lead time is 6h
 
 # Create model, dataset for input and also io object for output
@@ -32,7 +32,7 @@ run([forecast], step, model, ds_input, io)
 
 # Save results
 if debug:
-    io.root.to_netcdf("{}_{}_{}.nc".format(state, channel, forecast))
+    io.root.to_netcdf("graphcast_small_{}_{}_{}.nc".format(state, channel, forecast))
 
 # Return node with data
 lead_time = 1

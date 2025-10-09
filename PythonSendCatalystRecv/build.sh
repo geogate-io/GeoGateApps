@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source ../envs/env_derecho_intel.sh
+source ../envs/derecho_env_gnu.sh
 rm -rf build install
-ESMX_Builder -v
+ESMX_Builder -v --cmake-args="-DCMAKE_BUILD_TYPE=Debug"

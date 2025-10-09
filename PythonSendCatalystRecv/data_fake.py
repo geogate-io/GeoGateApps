@@ -8,7 +8,7 @@ state = "export"
 channel = "atm"
 nx_atm = 1440
 ny_atm = 721
-debug = False 
+debug = True 
 
 # Access to channel 
 my_channel = my_node["channels/{}/{}".format(state, channel)]
@@ -39,12 +39,12 @@ if debug:
 
 # Modify data, same method used in ESMF_FieldFill() call using sincos argument
 # Slightly modify data based on the time step to have time varying data
-tstep = my_node['state/time_step']+1
-member = 10.0*tstep
+tstep = my_node['state/time_step']
+member = tstep+8.0
 ds["slp"] = np.cos(member*ds["lon"]*3.1416/360.0)*np.sin(member*ds["lat"]*3.1416/360.0)
-member = 5.0*tstep
+member = tstep+4.0
 ds["u10"] = np.cos(member*ds["lon"]*3.1416/360.0)*np.sin(member*ds["lat"]*3.1416/360.0)
-member = 2.0*tstep
+member = tstep+2.0
 ds["v10"] = np.cos(member*ds["lon"]*3.1416/360.0)*np.sin(member*ds["lat"]*3.1416/360.0)
 
 # Save dataset after update
@@ -58,3 +58,5 @@ my_node_return.update(my_channel)
 my_node_return['data/fields/air_pressure_at_sea_level/values'] = ds['slp'].values.reshape(-1)
 my_node_return['data/fields/eastward_wind_at_10m_height/values'] = ds['u10'].values.reshape(-1)
 my_node_return['data/fields/northward_wind_at_10m_height/values'] = ds['v10'].values.reshape(-1)
+if debug:
+    my_node_return.save("my_node_return_{}".format(tstr))

@@ -5,10 +5,10 @@
 #PBS -A P93300606
 #PBS -q develop
 #PBS -l select=1:ncpus=2:mpiprocs=2:ompthreads=1
-#PBS -l walltime=00:05:00
+#PBS -l walltime=00:30:00
 
 set -eux
-source ../envs/env_derecho_intel.sh
+source ../envs/derecho_env_gnu.sh
 set +x
 
 export MPI_TYPE_DEPTH=20
@@ -19,7 +19,7 @@ export ESMF_RUNTIME_PROFILE=ON
 export ESMF_RUNTIME_PROFILE_OUTPUT="SUMMARY"
 export MPICH_COLL_OPT_OFF=1
 export CATALYST_IMPLEMENTATION_NAME="paraview"
-export CATALYST_IMPLEMENTATION_PATHS="$paraview_ROOT/lib64/catalyst"
+export CATALYST_IMPLEMENTATION_PATHS="$PARAVIEW_ROOT/lib64/catalyst"
 export PARAVIEW_LOG_CATALYST_VERBOSITY="INFO"
 export CATALYST_DEBUG=1
 
