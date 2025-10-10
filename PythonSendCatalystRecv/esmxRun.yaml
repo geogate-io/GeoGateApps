@@ -35,4 +35,4 @@ COP:
     Diagnostic: 0
     DebugMode: .false.
     CatalystConvertToCart: .true.
-    CatalystScripts: catalyst_grid_writer.py
+    CatalystScripts: catalyst_grid_writer.py:catalyst_plot.py
