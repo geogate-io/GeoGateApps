@@ -42,4 +42,4 @@ my_node_return['data/fields/air_pressure_at_sea_level/values'] = io.root['msl'][
 my_node_return['data/fields/eastward_wind_at_10m_height/values'] = io.root['u10m'][0,lead_time].values.reshape(-1)
 my_node_return['data/fields/northward_wind_at_10m_height/values'] = io.root['v10m'][0,lead_time].values.reshape(-1)
 if debug:
-    my_node_return.save('my_node_return')
+    my_node_return.save("my_node_return_{}".format(forecast))
