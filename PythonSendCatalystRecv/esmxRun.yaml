@@ -24,8 +24,8 @@ ATM:
     Verbosity: low 
     Diagnostic: 0
     DebugMode: .false.
-    PythonScripts: data_graphcast_small.py
-    ExportMeshFile: ../meshes/graphcast_small_mesh_cdf5.nc
+    PythonScripts: data_graphcast_operational.py
+    ExportMeshFile: ../meshes/graphcast_operational_mesh_cdf5.nc
     ExportFields: [eastward_wind_at_10m_height, northward_wind_at_10m_height, air_pressure_at_sea_level]
 COP:
   model: geogate
@@ -35,4 +35,4 @@ COP:
     Diagnostic: 0
     DebugMode: .false.
     CatalystConvertToCart: .true.
-    CatalystScripts: catalyst_grid_writer.py
+    CatalystScripts: catalyst_grid_writer.py:catalyst_plot.py

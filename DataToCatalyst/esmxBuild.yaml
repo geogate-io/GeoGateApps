@@ -1,5 +1,5 @@
 application:
-  link_libraries: conduit catalyst catalyst_fortran python3.11
+  link_libraries: conduit catalyst catalyst_fortran python3.12
 components:
   geogate:
     source_dir: ../src/GeoGate/src
