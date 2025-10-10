@@ -97,6 +97,10 @@ ExportMeshFile: ../meshes/era5_mesh.nc
 
 The model will output data in netCDF, binary ([Conduit](https://llnl-conduit.readthedocs.io/en/latest/) nodes), and [VTK](https://docs.paraview.org/en/latest/UsersGuide/understandingData.html) formats to check the results.
 
+Example visualization of Mean Sea Level Pressure (ranges from -1 to 1) from [ParaView Catalyst](https://docs.paraview.org/en/latest/Catalyst/index.html):
+
+<img width="418" height="422" alt="Fig02" src="https://github.com/user-attachments/assets/4f4812c1-4d20-4677-aa5a-b8896594c73f" />
+
 #### b. GraphCast Small (1.0 deg)
 
 The [GraphCastSmall](https://nvidia.github.io/earth2studio/modules/generated/models/px/earth2studio.models.px.GraphCastSmall.html) model is a smaller, low-resolution version of GraphCast (1 degree resolution, 13 pressure levels and a smaller mesh), trained on ERA5 data from 1979 to 2015.
@@ -110,6 +114,10 @@ ExportMeshFile: ../meshes/graphcast_small_mesh_cdf5.nc
 
 Note: The ESMF mesh files used in these examples are created previously using the [ proc_scrip.py](https://github.com/geogate-io/GeoGateApps/blob/main/tools/proc_scrip.py) and the [scrip2mesh.sh](https://github.com/geogate-io/GeoGateApps/blob/main/tools/scrip2mesh.sh) scripts. In case of using a new data source or data set, the user needs to create a new mesh file.
 
+Example visualization of Mean Sea Level Pressure from [ParaView Catalyst](https://docs.paraview.org/en/latest/Catalyst/index.html):
+
+<img width="418" height="422" alt="Fig03" src="https://github.com/user-attachments/assets/aaf81ffe-e489-416d-85ac-bc3bf6df8db6" />
+
 #### c. GraphCast Operational (0.25 deg)
 
 The [GraphCastOperational](https://nvidia.github.io/earth2studio/modules/generated/models/px/earth2studio.models.px.GraphCastOperational.html#earth2studio.models.px.GraphCastOperational) model is a high-resolution model (0.25 degree resolution, 13 pressure levels) pre-trained on ERA5 data from 1979 to 2017 and fine-tuned on HRES data from 2016 to 2021. 
@@ -120,6 +128,10 @@ To run this configuration, the `PythonScripts` and `ExportMeshFile` options need
 PythonScripts: data_graphcast_operational.py
 ExportMeshFile: ../meshes/graphcast_operational_mesh_cdf5.nc
 ```
+
+Example visualization of U component of wind at 10 meter from [ParaView Catalyst](https://docs.paraview.org/en/latest/Catalyst/index.html):
+
+<img width="418" height="422" alt="Fig04" src="https://github.com/user-attachments/assets/8e93ad80-29b5-490d-ae2a-a776ceb05b18" />
 
 ### Building and Running
 
