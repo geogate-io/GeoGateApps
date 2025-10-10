@@ -10,7 +10,7 @@ The configuration includes multiple instances of the GeoGate generic model compo
 
 The basic configuration of the two-component modeling system can be seen in the following figure:
 
-<img width="668" height="465" alt="Fig01" src="https://github.com/user-attachments/assets/6021c2ee-8f68-4fe6-929e-726a7022bd87" />
+<img width="519" height="361" alt="Fig01" src="https://github.com/user-attachments/assets/5569835a-3bfb-4c36-8c0f-feeb75f2d9fd" />
 
 ### Installing Dependencies
 
