@@ -6,7 +6,7 @@ The configuration includes multiple instances of the GeoGate generic model compo
 
 - **ATM:** In this case, GeoGate is configured as a provider (data) component that uses a Python plugin to trigger Python scripts to generate data. Please refer to Configurations section for more information about available data providers.
 
-- **COP:** The COP component is configured as a consumer component that uses the ParaView Catalyst plugin to process data provided by the ATM component; (1) [output information](https://github.com/geogate-io/GeoGateApps/blob/main/PythonSendCatalystRecv/catalyst_grid_writer.py) in VTK format, and (2) create set of visualizations using the visualization pipeline defined in **HERE!!!**.
+- **COP:** The COP component is configured as a consumer component that uses the ParaView Catalyst plugin to process data provided by the ATM component; (1) [output information](https://github.com/geogate-io/GeoGateApps/blob/main/PythonSendCatalystRecv/catalyst_grid_writer.py) in VTK format, and (2) create set of visualizations using the visualization pipeline defined in [catalyst_plot.py](https://github.com/geogate-io/GeoGateApps/blob/main/PythonSendCatalystRecv/catalyst_plot.py).
 
 The basic configuration of the two-component modeling system can be seen in the following figure:
 
